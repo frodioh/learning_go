@@ -1,0 +1,285 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+        <title>Оценки времени исполнения. Cимвол O()</title>
+<style type="text/css">
+body { position: relative; padding-bottom: 100px; }
+#lrek { position: absolute; width:100%; bottom: 0; font-size: 10px }
+#lrek * { font-size: 10px;}
+a,.out {text-decoration: none; cursor:pointer;color:#06c}
+a:hover,.out:hover {text-decoration: underline; color: #ff6600;cursor:pointer }
+h2 {font-size:14pt; font-family:sans-serif; font-weight:bold }
+pre {font-size:12pt}
+.source {font-size:12pt; color: #666699}
+.l2 {font-size:13pt}
+.l3 {font-size:12pt}
+a,.out, p, td { font-size: 13pt }
+</style>
+<META NAME=keywords CONTENT="алгоритм, построение, создание, написание, исходник, программа, определение, метод, вычисление, поиск, нахождение, реализация, описание, , определение, O(), о от n,  оценка, время, контроль, исполнение, проверка, точность, быстродействие, оптимальный, производительность">
+<META NAME=description CONTENT="Разное. Оценки времени исполнения. Cимвол O().">
+<META NAME=copyright CONTENT="Основной контент - Кантор Илья, дизайн - Владимир Городулин, основа движка и разнообразная помощь - Алексей Фортуна">
+</head>
+
+<body bgcolor="#eeeeee" link="#0066cc" vlink="#0066cc" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+
+<style>
+#logotable img { border-style:none }
+</style>
+<!-- logo header ... -->
+<table width=100% border=0 cellspacing=0 cellpadding=0 id="logotable">
+<tr><td colspan=2 width=100% bgcolor=#DD6E00><a href="/"><img src="/img/mlogo1.gif" width=313 height=41></a></td></tr>
+<tr><td colspan=2 bgcolor=#ffffff><a href="/"><img src="/img/mlogo2.gif" width=313 height=3></a></td></tr>
+<tr><td><a href="/"><img src="/img/mlogo3.gif" width=313 height=33></a></td><td width=100% background="/img/mgrad.gif" bgcolor=#FE7E00 nowrap><table border=0 cellpadding=0 cellspacing=3 align=right>
+      <tr valign=middle>
+<!--
+
+      <FORM NAME="search_form" METHOD=GET ACTION="/cgi-bin/search.cgi">
+      <td><INPUT TYPE="text" NAME="q" SIZE=30 VALUE="" class="inputfield"></td>
+      <td><INPUT TYPE="image" src="/img/search.gif" width=68 height=19 border=0 onclick="this.blur()"></td>
+      </FORM>
+
+-->
+      </tr>
+      </table></td></tr>
+<tr><td colspan=2 bgcolor=#ffffff><img src="/img/0.gif" width=1 height=1></td></tr>
+</table>
+<!-- ...logo header -->
+
+<!--Rating@Mail.ru COUNTER--><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://d8.c7.bf.a0.top.list.ru/counter'+
+'?id=1013908;js='+js+a+';rand='+Math.random()+
+'" height=1 width=1/>')
+if(11<js)d.write('<'+'!-- ')//--></script><noscript><img
+src="http://d8.c7.bf.a0.top.list.ru/counter?js=na;id=1013908"
+height=1 width=1 alt=""/></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--></script><!--/COUNTER-->
+
+
+<!-- main menu ... -->
+<table width=100% border=0 cellspacing=0 cellpadding=0>
+<tr><td bgcolor=#57A7EA>
+        <table border=0 cellspacing=0 cellpadding=0><tr>
+        <td><a href="/"><img src="/img/bs0.gif" width=140 height=17 border=0 alt=":: алгоритмы  и методы ::"></a></td>
+        <td><a href="/olimp/"><img src="/img/bs1.gif" width=140 height=17 border=0 alt=":: олимпиадные задачи ::"></a></td>
+        <td><a href="/contact.php"><img src="/img/bs2.gif" width=47 height=17 border=0 alt=":: связь ::"></a></td>
+        <td><a href="/aboutsite.php"><img src="/img/bs3.gif" width=57 height=17 border=0 alt=":: о сайте ::"></a></td>
+<!--	<td><img onclick="window.location='http://forum.algolist.ru/'" style="cursor:pointer" src="/img/bs6.gif" width=49 height=17 border=0 alt=":: форум ::"></td> -->
+<!--        <td><a href="/links/"><img src="/img/bs5.gif" width=57 height=17 border=0 alt=":: ссылки ::"></a></td>-->
+        </tr></table>
+</td></tr>
+<tr><td bgcolor=#ffffff><img src="/img/0.gif" width=1 height=1></td></tr>
+</table>
+<!-- ...main menu -->
+
+<!-- path line... -->
+<table cellspacing=2 cellpadding=2 border=0 width=100% bgcolor=#dddddd>
+<tr><td style="white-space:nowrap"><b>Путь:  <a href="/misc/">Разное</a> &raquo; Cимвол O()</td></tr>
+</table>
+<!-- ...path line -->
+
+<!-- 
+==============
+ MAIN CONTENT:
+==============
+-->
+
+
+<!-- табличка для создания отступов... -->
+<table cellspacing=0 cellpadding=12 border=0 width="100%">
+<tr><td>
+
+
+        <div align="center" id="lrek">На правах рекламы<br>
+<script type="text/javascript">
+<!--
+var _acic={dataProvider:10};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script> <a href="http://myconversespb.ru/" target="_blank">Конверс Спб</a> купить converse бесплатная доставка по Спб.</div>
+<table cellpadding=0 cellspacing=0 border=0 width="100%">
+
+
+
+<tr><td colspan=2><font face="Arial" color="#333333" size=4><b>&nbsp; Оценки времени исполнения. Cимвол O()</font></td></tr>
+
+<tr><td colspan=2 bgcolor=#999999 colspan=2><img src="/img/0.gif" width=1 height=1><br></td></tr>
+
+                                                           
+
+<tr valign=top>
+        <td align=center><img src="/img/0.gif" width=160 height=1><br></td>
+        <td width="100%"><br>
+
+        
+
+<author: name="ILIA">
+<p>Для оценки производительности алгоритмов можно использовать разные подходы. Самый бесхитростный - просто запустить каждый алгоритм на нескольких задачах и сравнить время исполнения. Другой способ - математически оценить время исполнения подсчетом операций.</p>
+
+<p>Рассмотрим алгоритм вычисления значения многочлена степени <i>n</i> в заданной точке <i>x</i>.<br>
+<i>P<sub>n</sub>(x) = a<sub>n</sub>x<sup>n</sup> + a<sub>n-1</sub>x<sup>n-1</sup> + ... + a<sub>i</sub>x<sup>i</sup> + ... + a<sub>1</sub>x<sup>1</sup> + a<sub>0</sub> </i></p>
+
+<p><u>Алгоритм 1</u> - для каждого слагаемого, кроме a<sub>0</sub> возвести <i>x</i> в заданную степень последовательным умножением и затем домножить на коэффициент. Затем слагаемые сложить.</p>
+
+<p>Вычисление <i>i</i>-го слагаемого(<i>i=1..n</i>) требует <i>i</i> умножений. Значит, всего <i>1 + 2 + 3 + ... + n = n(n+1)/2</i> умножений. Кроме того, требуется <i>n+1</i> сложение. Всего <i>n(n+1)/2 + n + 1= n<sup>2</sup>/2 + 3n/2 + 1</i> операций.</p>
+
+
+<p><u>Алгоритм 2</u> - вынесем <i>x</i>-ы за скобки и перепишем многочлен в виде<br>
+<i>P<sub>n</sub>(x) = a<sub>0</sub> + x(a<sub>1</sub> + x(a<sub>2</sub> + ... ( a<sub>i</sub> + .. x(a<sub>n-1</sub> +  a<sub>n</sub>x)))</i>.</p>
+
+<p>Например,<br><i>P<sub>3</sub>(x) = a<sub>3</sub>x<sup>3</sup> + a<sub>2</sub>x<sup>2</sup> + a<sub>1</sub>x<sup>1</sup> + a<sub>0</sub> = a<sub>0</sub> + x(a<sub>1</sub> + x(a<sub>2</sub> + a<sub>3</sub>x))</i></p>
+
+<p>Будем вычислять выражение изнутри. Самая внутренняя скобка требует 1 умножение и 1 сложение. Ее значение используется для следующей скобки... И так, 1 умножение и 1 сложение на каждую скобку, которых.. <i>n-1</i> штука. И еще после вычисления самой внешней скобки умножить на x и прибавить <i>a<sub>0</sub></i>. Всего <i>n</i> умножений + <i>n</i> сложений = <i>2n</i> операций.
+
+<p>Зачастую такая подробная оценка не требуется. Вместо нее приводят лишь 
+асимптотическую скорость возрастания количества операций при увеличении n.</p>
+
+<p>Функция f(n) = <i>n<sup>2</sup>/2 + 3n/2 + 1</i> возрастает приблизительно как <i>n<sup>2</sup>/2</i> (отбрасываем сравнительно медленно растущее слагаемое <i>3n/2+1</i>). Константный множитель <i>1/2</i> также убираем и получаем асимптотическую оценку для алгоритма 1, которая обозначается специальным символом <i>O(n<sup>2</sup>)</i> [читается как "О большое от эн квадрат"].</p>
+
+<p>Это - верхняя оценка, т.е количество операций(а значит, и время работы) растет не быстрее, чем квадрат количества элементов. Чтобы почувствовать, что это такое, посмотрите на таблицу, где приведены числа, иллюстрирующие скорость роста для нескольких разных функций.</p>
+
+<table cellspacing="2" cellpadding="10" border="1" align="center">
+<tr>   
+	<td><div align="center"><b>n</b></div></td>
+	<td><div align="center"><b><nobr>log n</nobr></b></div></td>
+    <td><div align="center"><b><nobr>n*log n</nobr></b></div></td>
+	<td><div align="center"><b>n<sup>2</sup></b></div></td>
+</tr>
+<tr>
+    <td>1</td>    <td>0</td>    <td>0</td>    <td>1</td>
+</tr>
+<tr>
+    <td>16</td>    <td>4</td>    <td>64</td>    <td>256</td>
+</tr>
+<tr>
+    <td>256</td>    <td>8</td>    <td>2,048</td>    <td>65,536</td>
+</tr>
+<tr>
+    <td>4,096</td>    <td>12</td>    <td>49,152</td>    <td>16,777,216</td>
+</tr>
+<tr>
+    <td>65,536</td>    <td>16</td>    <td>1,048,565</td>    <td>4,294,967,296</td>
+</tr>
+<tr>
+    <td>1,048,576</td>    <td>20</td>    <td>20,969,520</td>    <td>1,099,301,922,576</td>
+</tr>
+<tr>
+    <td>16,775,616</td>    <td>24</td>    <td>402,614,784</td>    <td>281,421,292,179,456</td>
+</tr>
+</table>
+<p>Если считать, что числа в таблице соответствуют микросекундам, то для задачи с <i>n=1048576</i> элементами алгоритму с временем работы <i>O(log n)</i> потребуется 20 микросекунд, алгоритму со временем <i>O(n)</i> - 17 минут, а алгоритму с временем работы <i>O( n<sup>2</sup> )</i> - более 12 дней... Теперь преимущество алгоритма 2 с оценкой <i>O(n)</i> перед алгоритмом 1 достаточно очевидно.
+</p>
+
+<p>Наилучшей является оценка <i>O(1)</i>... В этом случае время вообще не зависит от <i>n</i>, т.е постоянно при любом количестве элементов.</p>
+
+<p>Таким образом, <i>O()</i> - "урезанная" оценка времени работы алгоритма, которую зачастую гораздо проще получить, чем точную формулу для количества операций.</p>
+
+<h4:>Итак, сформулируем два правила формирования оценки O().</h4:>
+
+<p><u>При оценке за функцию берется количество операций, возрастающее быстрее всего.</u><br>
+То есть, если в программе одна функция, например, умножение, выполняется <i>O(n)</i> раз, а сложение - <i>O(n<sup>2</sup>)</i> раз, то общая сложность программы - <i>O(n<sup>2</sup>)</i>, так как в конце концов при увеличении <i>n</i> более быстрые ( в определенное, <u>константное</u> число раз ) сложения станут выполнятся настолько часто, что будут влиять на быстродействие куда больше, нежели медленные, но редкие умножения. Символ <i>O()</i> показывает <u><i>исключительно</i></u> асимптотику!
+</p>
+
+<p><u>При оценке O() константы не учитываются.</u><br>
+Пусть один алгоритм делает 2500n + 1000 операций, а другой - 2n+1. Оба они имеют оценку <i>O(n)</i>, так как их время выполнения растет линейно.
+</p>
+
+<p>В частности, если оба алгоритма, например, <i>O( n*log n )</i>, то это отнюдь не значит, что они одинаково эффективны. Первый может быть, скажем, в 1000 раз эффективнее. O() значит лишь то, что их время возрастает приблизительно как функция <i>n*log n</i>.</p>
+
+<p>Другое следствие опускания константы - алгоритм со временем <i>O(n<sup>2</sup>)</i> может работать значительно быстрее алгоритма <i>O(n)</i> <u>при малых n</u>... За счет того, что реальное количество операций  первого алгоритма может быть <i>n<sup>2</sup> + 10n + 6</i>, а второго - <i>1000000n + 5</i>. Впрочем, второй алгоритм рано или поздно обгонит первый... <i>n<sup>2</sup></i> растет куда быстрее <i>1000000n</i>.
+
+<p>Основание логарифма внутри символа <i>O()</i> не пишется.<br>
+Причина этого весьма проста. Пусть у нас есть <i>O( log<sub>2</sub>n)</i>. Но <i>log<sub>2</sub>n=log<sub>3</sub>n/log<sub>3</sub>2</i>, а <i>log<sub>3</sub>2</i>, как и любую константу, асимптотика - символ <i>О()</i> не учитывает. Таким образом, <i>O( log<sub>2</sub>n)</i> = <i>O( log<sub>3</sub>n)</i>.</p>
+<p>К любому основанию мы можем перейти аналогично, а значит и писать его не имеет смысла.</p>
+
+<h4:>Математическое толкование символа O().</h4:>
+
+<p><u>Определение</u><br>
+<i>O(g)</i> - множество функций <i>f</i>, для которых существуют такие константы <i>C</i> и <i>N</i>, что <i>|f(x)| &lt;= C|g(x)|</i> для всех <i>x&gt;N</i>.<br>
+Запись <i>f = O(g)</i> дословно обозначает, что <i>f</i> принадлежит множеству <i>O(g)</i>. При этом обратное выражение <i>O(g) = f</i> не имеет смысла.</p>
+
+<p>В частности, можно сказать, что <i>f(n) = 50n</i> принадлежит <i>O(n<sup>2</sup>)</i>. Здесь мы имеем дело с неточной оценкой. Разумеется, <i>f(n) &lt;= 50n<sup>2</sup></i> при <i>n&gt;1</i>, однако более сильным утверждением было бы <i>f(n) = O(n)</i>, так как для <i>C=50</i> и<i> N=1</i> верно <i>f(n) &lt;= Cn, n>N</i>. </p>
+
+<h4:>Другие виды оценок.</h4:>
+
+<p>Наряду с оценкой <i>O(n)</i> используется оценка <i>&Omega;(n)</i> [читается как "Омега большое от эн"]. Она обозначает нижнюю оценку роста функции. Например, пусть количество операций алгоритма описывает функция <i>f(n) = &Omega;(n<sup>2</sup>)</i>. Это значит, что даже в самом удачном случае будет произведено не менее порядка <i>n<sup>2</sup></i> действий.
+<br>...В то время как оценка <i>f(n) = O(n<sup>3</sup>)</i> гарантирует, что в самом худшем случае действий будет порядка <i>n<sup>3</sup></i>, не больше.</p>
+
+<p>Также используется оценка <i>&Theta;(n)</i> ["Тэта от эн"], которая является гибридом <i>O()</i> и <i>&Omega;()</i>.<br>
+<i>&Theta;(n<sup>2</sup>)</i> является и верхней и нижней асимптотической оценкой одновременно -
+всегда будет выполняться порядка <i>n<sup>2</sup></i> операций. Оценка <i>&Theta;()</i> существует только тогда, когда <i>O()</i> и <i>&Omega;()</i> совпадают и равна им.</p>
+
+<p>Для рассмотренных выше алгоритмов вычисления многочлена найденные оценки являются одновременно <i>O()</i>, <i>&Omega;()</i> и <i>&Theta;()</i>.<br>
+Если добавить к первому алгоритму проверки на <i>x=0</i> в возведении в степень, то на самых удачных исходных данных(когда <i>x=0</i>) имеем порядка <i>n</i> проверок, 0 умножений и 1 сложение, что дает новую оценку <i>&Omega;(n)</i> вкупе со старой <i>O(n<sup>2</sup>)</i>.</p>
+
+<p>Как правило, основное внимание все же обращается на верхнюю оценку <i>O()</i>, поэтому, несмотря на "улучшение", алгоритм 2 остается предпочтительнее.</p>
+<p>Итак, <i>O()</i> - асимптотическая оценка алгоритма на худших входных данных, <i>&Omega;() </i>- на лучших входных данных, <i>&Theta;()</i> - сокращенная запись одинаковых <i>O()</i> и <i>&Omega;()</i>.</p>
+
+
+
+
+</td>
+</tr>
+</table>
+
+<hr/>
+
+<!-- ...табличка для создания отступов-->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2056213-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter21593104 = new Ya.Metrika({id:21593104,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/21593104" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+
+
+
+</body>
+</html>
