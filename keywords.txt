@@ -1,0 +1,7 @@
+Functions - func
+
+Variables - var
+
+Constants - const
+
+Types - type
